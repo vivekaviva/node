@@ -1,15 +1,29 @@
-console.log("Hello World");
-var http = require("http");
+const express = require ("express");
+const app = express();
 
-http.createServer(function (request, response) {
-   // Send the HTTP header 
-   // HTTP Status: 200 : OK
-   // Content Type: text/plain
-   response.writeHead(200, {'Content-Type': 'text/plain'});
-   
-   // Send the response body as "Hello World"
-   response.end('Hello World\n');
-}).listen(8081);
+app.get('/',function (req,res){
+    res.send ("Hello World");
+});
 
-// Console will print the message
-console.log('Server running at http://127.0.0.1:8081/');
+// app.get('/user-identifier/:id',function(req,res){
+//     if (req.params.id == 1234) {
+//         res.send("siva");
+//     } else {
+//         res.send("priya");
+//     }
+// });
+
+app.get('/:id',function (req,res){
+    let username = "hello " + req.params.id;
+    let name = "hello " + req.query.name;
+    res.send(name);
+});
+
+app.listen(8080);
+// function add(a, b) {
+//     return a + b;
+// }
+
+// let c= add (0,10);
+
+// console.log("C value is " +c);
